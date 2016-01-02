@@ -601,7 +601,7 @@
             minW = vpData.width / imgData.width;
             minH = vpData.height / imgData.height;
             minZoom = Math.max(minW, minH);
-            
+
             if (minZoom > maxZoom) {
                 maxZoom = minZoom + 1;
             }
@@ -717,7 +717,7 @@
         if (scale === Infinity || isNaN(scale)) {
             scale = 1;
         }
-        
+
         x1 /= scale;
         x2 /= scale;
         y1 /= scale;
@@ -745,7 +745,13 @@
         }
 
         data.circle = self.options.viewport.type === 'circle';
-        data.url = self.data.url;
+
+        // fix Andy
+        if (self.data.url) {
+            data.url = self.data.url;
+        } else {
+            data.url = "";
+        }
 
         prom = new Promise(function (resolve, reject) {
             if (type === 'canvas') {
