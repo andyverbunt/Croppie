@@ -171,14 +171,16 @@
             prom;
 
         prom = new Promise(function (resolve, reject) {
-            if (src.substring(0,4).toLowerCase() === 'http') {
-                img.setAttribute('crossOrigin', 'anonymous');
+            if (src) {
+                if (src.substring(0,4).toLowerCase() === 'http') {
+                    img.setAttribute('crossOrigin', 'anonymous');
+                }
+                img.onload = function () {
+                    setTimeout(function () {
+                        resolve(img);
+                    }, 1);
+                };
             }
-            img.onload = function () {
-                setTimeout(function () {
-                    resolve(img);
-                }, 1);
-            };
         });
 
         img.style.opacity = 0;
