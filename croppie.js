@@ -184,7 +184,9 @@
         });
 
         img.style.opacity = 0;
-        img.src = src;
+        if (src) {
+            img.src = src;
+        }
         return prom;
     }
 
